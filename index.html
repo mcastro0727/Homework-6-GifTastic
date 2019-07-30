@@ -9,8 +9,7 @@
 </head>
 
 <body>
-    <div id="buttons">
-        <button data-city="Las Vegas">Las Vegas</button>
+    <div id="buttons"></div>
 
 
 
@@ -25,46 +24,14 @@
 
 
 
-        <div id="gifs-appear-here"></div>
+    <div id="gifs-appear-here"></div>
 
 
 
 
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script type="text/javascript">
-            $("button").on("click", function () {
-                var city = $(this).attr("data-city");
-                var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + city +
-                    "&api_key=dOGBIKdSTDlKIjpGECqZggOdOEfD8WsT&limit=10";
-
-                $.ajax({
-                        url: queryURL,
-                        method: "GET"
-                    })
-                    .then(function (response) {
-                        console.log(response);
-                        var results = response.data;
-
-                        for (var i = 0; i < results.length; i++) {
-                            var cityDiv = $("<div>");
-
-                            var rating = results[i].rating;
-
-                            var p = $("<p>").text("Rating: " + rating);
-
-                            var cityImage = $("<img>");
-                            cityImage.attr("src", results[i].images.fixed_height.url);
-
-                            cityDiv.prepend(cityImage);
-                            cityDiv.prepend(p);
-
-                            $("#gifs-appear-here").prepend(cityDiv);
-
-                        }
-                    })
-            });
-        </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="giphy.js"></script>
 
 
 </body>
