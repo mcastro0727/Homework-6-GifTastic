@@ -24,7 +24,6 @@ $(document).ready(function () {
     makeButtons();
 
     //Get gifs on button click from api
-
     $("button").on("click", function () {
 
             var city = $(this).attr("data-city");
@@ -39,6 +38,9 @@ $(document).ready(function () {
             .then(function (response) {
                 var results = response.data;
 
+                $("#city-gifs").empty();
+
+
                 for (var i = 0; i < results.length; i++) {
                     var cityDiv = $("<div>");
 
@@ -52,9 +54,26 @@ $(document).ready(function () {
                     cityDiv.prepend(cityImage);
                     cityDiv.prepend(p);
 
-                    $("#gifs-appear-here").prepend(cityDiv);
+                    $("#city-gifs").append(cityDiv);
+
 
                 }
             })
         })
+
+	// Add a button for city entered in form
+	$("#add-city").on("click", function () {
+		event.preventDefault();
+		var city = $("#city-input").val().trim();
+		cityList.push(city);
+        makeButtons();
+        clearForm();
+    });
+    
+    function clearForm() {
+    $("#city-input").empty();
+    }
+
+
+
     })
